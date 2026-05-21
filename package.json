@@ -1,0 +1,25 @@
+{
+  "name": "public_html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nachom1833/Nuevo-MitoGafas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nachom1833/Nuevo-MitoGafas/issues"
+  },
+  "homepage": "https://github.com/nachom1833/Nuevo-MitoGafas#readme",
+  "dependencies": {
+    "googleapis": "^164.1.0",
+    "lucide-react": "^0.547.0",
+    "puppeteer": "^24.25.0"
+  }
+}

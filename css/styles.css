@@ -8,26 +8,18 @@
   --fuente-secundaria: "Anton", sans-serif;
 }
 
-body {
-  font-family: var(--fuente-principal);
-  background-color: var(--color-fondo);
-}
-main{
-  padding: 0 !important;
-}
-.nav-link {
-  color: var(--color-principal);
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: var(--color-hover);
-}
-
+/* Reset y base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Asegurar que las imágenes mantengan su proporción por defecto */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 html {
@@ -35,1390 +27,609 @@ html {
 }
 
 body {
-  font-family: "Titillium Web", sans-serif;
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden; /* Asegurarse de que no haya scroll horizontal */
+  overflow-x: hidden; /* evitar scroll horizontal */
 }
 
-p {
-  font-size: 14px;
-  line-height: 22.4px;
-  color: #6c7279;
+/* Altura de compensación del body para el navbar fijo */
+body { padding-top: 80px; }
+
+main {
+  padding: 2rem;
 }
 
-h1 {
-  font-size: 3rem;
-  color: #2d3033;
-}
+/* Tipografía */
+p { font-size: 14px; line-height: 1.6; color: #6c7279; }
+h1 { font-size: 3rem; color: #2d3033; }
+h2 { font-size: 40px; color: #2d3033; }
+h3 { font-size: 40px; color: #2d3033; font-weight: 300; }
+h4 { font-size: 22px; color: #000; font-weight: 500; }
+h5 { font-size: 14px; color: #2d3033; text-transform: uppercase; font-weight: 700; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--fuente-secundaria); letter-spacing: .3rem; }
+.h6 { letter-spacing: normal; }
 
-h2 {
-  font-size: 40px;
-  color: #2d3033;
-}
-
-h3 {
-  font-size: 40px;
-  color: #2d3033;
-  font-weight: 300;
-}
-
-h4 {
-  font-size: 22px;
-  color: #000000;
-  font-weight: 500;
-}
-
-h5 {
-  font-size: 14px;
-  color: #2d3033;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Anton", sans-serif;
-  letter-spacing: 0.3rem;
-}
-.h6{
-  letter-spacing: normal;
-}
+/* Botones */
 .btn {
   background-color: transparent;
   color: #050304;
   font-size: 16px;
   font-weight: 600;
-  border: 0;
+  border: 1px solid #000;
   border-radius: 2px;
   display: inline-block;
   text-transform: uppercase;
-  border: 1px solid #000000;
+}
+.btn:hover, .btn:focus { background-color: #0b0909; color: #fff; }
+.btn-large { padding: 15px 40px; }
+
+
+/* --------------------- Ajustes globales de espaciado y layout --------------------- */
+/* Variables para controlar espaciados fácilmente */
+:root {
+  --site-max-width: 1200px;
+  --page-gutter: clamp(1rem, 2.5vw, 2rem);
+  --section-vertical: clamp(1.2rem, 3.5vw, 4rem);
+  --section-vertical-sm: clamp(0.8rem, 2.5vw, 2rem);
+  --navbar-height: 80px; /* mantener sincronizado con body padding-top */
+  --carousel-vh-desktop: calc(var(--vh, 1vh) * 90);
+  --carousel-vh-mobile: calc(var(--vh, 1vh) * 50);
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: #0b0909;
-  color: #fff;
+/* Box sizing consistente */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
-.btn-large {
-  padding: 15px 40px;
+/* Contenedor central */
+.site-container {
+  max-width: var(--site-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--page-gutter);
+  padding-right: var(--page-gutter);
 }
 
-/* Carrousel styles */
-#main-carousel{
-  width: 100%;
-  margin: 0 auto;
-  height: 90vh;
-}
-
-.carousel-inner {
-  height: 100%;
-  width: 100%;
-}
-
-.custom-carousel .carousel-item {
-  height: 90vh;
-  width: 100%;
-}
-
-.custom-carousel .carousel-item img {
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Navbar styles */
-.navbar-brand-img {
-  height: 60px; /* Aumenta el tamaño del logo si es necesario */
-}
-
-#carouselExampleInterval{
-  .carousel .carousel-item img {
-  height: 90vh;
-  object-fit: cover;
-}
-}
-.glasses-container-img img {
-  height: auto;
-  max-height: 300px; /* Ajusta según el diseño */
-}
-.navbar-nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.navbar-nav-pages {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.navbar-nav-media {
-  display: flex;
-  gap: 1rem;
-}
-
-.navbar {
-  display: flex;
-  background-color: rgb(255 255 255);
-  padding: 0.7rem !important;
-  position: fixed;
-  top: 0; /* Asegurar que el navbar esté siempre visible */
-  width: 100%;
-  z-index: 999;
-  font-size: 2em;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  height: max-content;
-  font-weight: bold;
-}
-
-body {
-  padding-top: 11vh !important; /* Altura del navbar */
-}
-
-.navbar-brand-container {
-  display: inline-block;
-  height: 11vh;
-  width: 30%;
-}
-
-.navbar-brand-img {
-  object-fit: cover;
-  height: 100%;
-}
-
-.navbar-nav-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 2rem;
-  width: 100%;
-}
-
-.navbar-nav-pages {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 2.5rem;
-  margin-right: 2rem;
-}
-
-.nav-item {
-  list-style: none;
-}
-
-.nav-link {
-  color: #000000;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #868686;
-}
-
-.navbar-nav-media {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-toggle {
-  background: none;
-  border: none;
-  color: #000000;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1000;
-  visibility: hidden;
-}
-
-.navbar-nav-container.active {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 5px;
-  z-index: 999;
-}
-
-/* Products style */
-.three-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 80vh;
-  margin: 1rem 0;
-  justify-content: space-between;
-}
-
-.two-container {
-  display: flex;
-  width: 49.5%;
-  height: 100%;
-}
-
-.one-img-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.one-img-container a {
-  text-decoration: none;
-  height: 100%;
-  width: 100%;
-  #negro{
-color: #000 !important;
-  }
-}
-
-.title {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgb(255, 255, 255);
-  z-index: 1;
-  font-weight: bolder;
-  text-align: center;
- 
-}
-
-.one-img-container img {
-  width: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: 100%;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-.one-img-container img:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-/* somos style */
-
-.somos-container {
-  display: flex;
-  background-color: #ffffff;
-  width: 100%;
-  height: 30vh;
-  padding: 1rem 2.5rem;
-  flex-wrap: nowrap;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  img{
-    width: 100%;
-  }
-}
-.somos-container-text {
-  display: flex;
-  align-items: center;
-}
-.somos-frase {
-  color: #000000;
-  font-size: 5rem;
-  font-family: "Titillium Web", sans-serif;
-}
-
-/* footer styles */
-footer {
-  position: relative;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-.footer-container-social .footer-container-media {
-  margin-top: 1rem;
-}
-
-.footer-container-social .footer-container-img img {
-  max-width: 200px;
-  height: auto;
-}
-.footer-container-media {
-  display: flex;
-  justify-content: center;
-}
-.footer-container-img {
-  display: flex;
-  justify-content: center;
-}
-.footer-container-social .navbar-nav-media {
-  display: flex;
-  justify-content: start;
-  gap: 1rem;
-}
-
-.footer-container-social .navbar-nav-media .nav-link {
-  font-size: 1.5rem;
-  color: #ffffff;
-  width: 25%;
-}
-
-.footer-container-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.navbar-nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.container {
-  margin: 0%;
-  max-width: 1400px; /* Ajusta según tus necesidades */
-  margin: 0 auto; /* Centra el contenedor */
-  padding: 0 2rem;
-  .row {
-    position: relative;
-    left: 0;
-  }
-}
-/* seccion de contacto */
-/* Contact form styles */
+/* Secciones uniformes */
 .section {
-  margin-top: 1rem;
-  padding: 60px 0;
+  padding-top: var(--section-vertical);
+  padding-bottom: var(--section-vertical);
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 40px;
+/* Secciones pequeñas (hero / promos más compactas) */
+.section--sm {
+  padding-top: var(--section-vertical-sm);
+  padding-bottom: var(--section-vertical-sm);
 }
 
-.section-header h2 {
-  font-size: 2.5rem;
-  color: #333;
+/* Ajuste del body padding-top según navbar */
+body {
+  padding-top: var(--navbar-height);
 }
 
-.section-header p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.conForm {
-  background: #f9f9f9;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.conForm .form-control {
-  margin-bottom: 1rem;
-}
-
-.conForm .btn {
-  width: 100%;
-  background: #000000;
-  border: none;
-  color: white;
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-.conForm .btn:hover {
-  background: #5e6164;
-}
-
-#message {
-  display: none;
-  margin-bottom: 1rem;
-  color: #d9534f;
-  font-weight: bold;
-}
-
-/* Hero Section */
-.hero {
-  padding: 50px 0;
-  text-align: center;
-  background-color: #f8f9fa; /* Fondo claro */
-}
-
-.container-title-filter {
+/* Flex/grid helpers: usar gap en lugar de margins en hijos */
+.row-gap {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.title-filter {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.dropdown-toggle {
-  padding: 10px 20px;
-  font-size: 1rem;
-}
-
-.dropdown-menu {
-  width: auto;
-}
-.dropdown-menu button {
-  width: 100%;
-  text-align: left;
-  border: none;
-}
-
-/* Glasses Section */
-/* Contenedor de la lista de productos */
-
-.container-list {
+/* Ajustes para atajos/blocks (three-container, two-container, one-img-container) */
+.three-container, .two-container, .one-img-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem; /* Separación entre los elementos */
-  justify-content: center;
-  padding: 20px;
-
+  gap: 1rem;
+  align-items: stretch; /* que los items crezcan de forma uniforme */
 }
 
-/* Elementos individuales de productos */
-.container-list-item {
-  flex: 1 1 calc(33.333% - 1.5rem); /* Tres productos por fila por defecto */
-  max-width: 300px; /* Tamaño máximo para cada producto */
-  box-sizing: border-box;
-  list-style: none;
+/* Cada item dentro de contenedores se comporta responsive */
+.three-container > *, .two-container > *, .one-img-container > * {
+  flex: 1 1 300px; /* crece, pero con base mínima */
+  min-width: 220px;
 }
 
-/* Contenedor de cada producto */
-.glasses-container {
-  border: 1.5px solid #6c757d;
-  padding: 20px;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: #fff;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-/* Eliminar subrayado de enlaces */
-.container-list-item a {
-  text-decoration: none; /* Sin subrayado */
-  color: inherit; /* Hereda el color del contenedor */
-}
-
-/* Efecto de zoom al pasar el mouse */
-.glasses-container:hover {
-  transform: scale(1.05);
-}
-
-/* Imagen principal */
-.glasses-img {
-  width: 80%; /* Imagen principal un poco más pequeña */
-  height: auto;
-  border-radius: 5px;
-  object-fit: cover;
-  margin: 0 auto; /* Centra la imagen */
-}
-
-/* Título y material */
-.glasses-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 10px 0;
-  color: #333;
-
-}
-
-.glasses-material {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 10px;
-
-}
-
-/* Lista de miniaturas */
-.list-img-colors {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  justify-content: center;
-  margin-top: 10px; /* Separación con la imagen principal */
-}
-
-/* Miniaturas */
-.list-img-colors img {
-  width: 64px; /* Tamaño de las miniaturas */
-  height: 64px;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-/* Efecto al pasar el mouse sobre miniaturas */
-.list-img-colors img:hover {
-  transform: scale(1.2);
-}
-
-/* Media queries para ajustar el número de productos según el tamaño de la pantalla */
-
-/* 3 productos por fila en pantallas pequeñas (celulares) */
-@media (max-width: 768px) {
-  .container-list-item {
-    flex: 1 1 calc(100% - 1.5rem); /* Un solo producto por fila */
-  }
-}
-
-/* 2 productos por fila en pantallas medianas (tabletas) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container-list-item {
-    flex: 1 1 calc(50% - 1.5rem); /* Dos productos por fila */
-  }
-}
-
-/* 3 productos por fila en pantallas grandes (desktops) */
-@media (min-width: 1025px) {
-  .container-list-item {
-    flex: 1 1 calc(33.333% - 1.5rem); /* Tres productos por fila */
-  }
-}
-
-/* Al 150% de zoom (pantalla más ancha), tener solo 2 productos */
-@media (min-width: 1200px) {
-  .container-list-item {
-    flex: 1 1 calc(50% - 1.5rem); /* Dos productos por fila */
-  }
-}
-
-/* Al 200% de zoom (pantalla más ancha), tener solo 1 producto */
-@media (min-width: 1500px) {
-  .container-list-item {
-    flex: 1 1 100%; /* Un solo producto por fila */
-  }
-}
-/* Footer */
-.footer-container-social img {
-  max-width: 150px;
-  height: auto;
-  margin-bottom: 15px;
-}
-
-.navbar-nav-media.list-inline {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.navbar-nav-links.list-inline {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 10px;
-}
-
-.footer .nav-link {
-  color: #fff;
-  text-decoration: none;
-}
-
-.footer .nav-link:hover {
-  color: #ccc;
-}
-
-
-/* seccion de encontranos */
-
-/* Estilo Base */
-.container-opticas {
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  margin: 0 auto 2rem auto;
-}
-
-.scrollable-list {
-  max-height: 70vh;
-  overflow-y: scroll;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-left: 5rem;
-}
-
-.scrollable-list-item {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.scrollable-list-item:hover {
-  background-color: #f1f1f1;
-}
-
-.scrollable-list-item a {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-}
-
-.container-opticas-title {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 1rem;
-}
-
-.dropdown {
+/* Específico: one-img-container (hero cards) */
+.one-img-container {
   position: relative;
-  display: inline-block;
+  width: 100%;
+  display: block;
+  /* no forzar height; usar min-height para evitar colapsos */
+  min-height: clamp(220px, 30vh, 420px);
+  overflow: hidden;
 }
-
-.dropdown-toggle,
-.item-btn {
-  background-color: transparent;
-  color: #050304;
-  font-size: 1rem;
-  font-weight: 600;
-  border: 1px solid #000000;
-  border-radius: 2px;
-  text-transform: uppercase;
-  padding: 10px 20px;
-  cursor: pointer;
+/* Nuevo: Efecto Zoom-in suave al hacer hover sobre la imagen */
+.one-img-container:hover img {
+    transform: scale(1.05); /* Aumenta el tamaño de la imagen en un 5% */
 }
-
-.dropdown-toggle:hover,
-.item-btn:hover {
-  background-color: #0b0909;
-  color: #fff;
-}
-#localidades{
-  overflow-y:auto ;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  background-color: white;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  max-height: 150px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.dropdown-menu.show {
+/* Imagenes dentro de estos contenedores: mantener proporción y centrar */
+.one-img-container img,
+.one-img-container .bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-.soporte-section-buttons{
-  display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+/* Titulo dentro del bloque: centrado y responsivo */
+.one-img-container .title {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  margin: 0;
+  padding: 0 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 4px 9px rgba(0, 0, 0, 0.6);
+  font-size: clamp(1.6rem, 6vw, 3rem);
+  pointer-events: none;
+  white-space: nowrap;
 }
-/* Responsivo */
+
+/* Carousel: asegurar que no rompa layout de flow y usar min-height en mobile */
+#main-carousel {
+  width: 100%;
+  min-height: var(--carousel-vh-mobile);
+}
+
+/* Evitar uso forzado de height:100% que pueda estirar imágenes en some contexts */
+.carousel .carousel-item {
+  position: relative;
+  /* permitir que bootstrap controle visibilidad; no forzar display bloqueo global fuera del scope mobile */
+  overflow: hidden;
+}
+
+/* Móvil — ajustar paddings y tamaños para que los bloques no colapsen */
 @media (max-width: 768px) {
-  .container-opticas {
-    width: 90vw;
-    margin-bottom: 1rem;
+  :root {
+    --navbar-height: 55px;
   }
 
-  .scrollable-list {
-    max-height: 50vh;
-    padding: 0.5rem;
-    margin: unset;
-        margin-top: 1rem;
+  .site-container {
+    padding-left: clamp(0.75rem, 4vw, 1rem);
+    padding-right: clamp(0.75rem, 4vw, 1rem);
   }
 
-  .container-opticas-title {
+  .section {
+    padding-top: var(--section-vertical-sm);
+    padding-bottom: var(--section-vertical-sm);
+  }
+
+  /* Los contenedores apilan verticalmente y cada item toma 100% */
+  .three-container, .two-container {
     flex-direction: column;
-    align-items: flex-start;
-    margin: 0.5rem;
+    gap: 0.75rem;
   }
 
-  .dropdown,
-  .dropdown-toggle {
-    width: 100%;
-  }
-
-  .dropdown-menu {
+  .three-container > *, .two-container > * {
+    flex: 1 1 100%;
     min-width: 100%;
-    max-height: 200px;
   }
 
-  .dropdown-toggle,
-  .item-btn {
-    font-size: 0.875rem;
-    padding: 8px 15px;
+  /* Carousel mobile: usar min-height y asegurar que la img ocupe sin distorsión */
+  .carousel .carousel-item {
+    min-height: var(--carousel-vh-mobile);
   }
-}
-
-
-/* Section disclaimer */
-
-.disclaimer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: nowrap;
-  align-content: center;
-  align-items: center;
-  margin: 0.6rem;
-
-  .disclaimer-container-text {
-  }
-  .disclaimer-container-link {
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    gap: 0.2rem;
-    
-  }
-}
-
-
-/*Seccion detalle anteojos*/
-
-#product-detail{
-  padding: 1rem;
-}
-.mt-3 {
-  margin-top: 1rem;
-  display:flex;
-  justify-content: space-evenly;
-}
-.thumbnail-img.active {
-  border: 2px solid #000;
-}
-/* Estilos generales para el main */
-main {
-  padding: 2rem;
-}
-
-/* Estilos del detalle del producto */
-#product-detail h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-#product-detail h4 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #555;
-}
-
-#product-detail p {
-  font-size: 1rem;
- /* margin-bottom: 1.5rem;*/
-}
-
-/* Carousel */
-#carouselImages{
-  height: 60vh;
-  img{
-    height:60vh;
-    padding: 0.3rem;
-    object-fit: contain;
-  }
-}
-
-
-.mitos-carousel .carousel-inner img {
-  height: unset; /* Estilo específico para el carrusel de MITO */
-  object-fit: unset; /* Cambia según lo que necesites */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  width: 5%;
-}
-
-/* Miniaturas del carrusel */
-.thumbnail-img {
-  max-width: 30%;
-  width: max-content;
-  height: auto;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.thumbnail-img.active {
-  border-color: #333;
-}
-
-
-
-/* Sección "SOMOS MITO" */
-#somos-mito h1 {
-  font-size: 3.5rem;  /* Aumentado */
-  font-weight: bold;
-  color: #000;
-}
-
-#somos-mito p {
-  font-size: 1.5rem;  /* Aumentado */
-  color: #555;
-  line-height: 1.8;  /* Mayor espacio entre líneas */
-}
-
-/* Sección "NUESTROS VALORES" */
-#nuestros-valores {
-  background-color: #f0f0f0;  /* Fondo claro para resaltar */
-  padding: 4rem 2rem;  /* Espaciado generoso */
-  border-radius: 15px;  /* Bordes redondeados */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  /* Sombra suave */
-}
-
-#nuestros-valores h2 {
-  font-size: 3rem;  /* Título más grande */
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 2.5rem;  /* Espacio mayor debajo del título */
-}
-
-#nuestros-valores h3 {
-  font-size: 2rem;  /* Subtítulos más grandes */
-  font-weight: bold;
-  color: #000;
-}
-
-#nuestros-valores p {
-  font-size: 1.25rem;  /* Texto más grande */
-  color: #555;
-  line-height: 1.8;
-}
-
-#nuestros-valores .col-md-4 {
-  padding: 1rem;
-  transition: transform 0.3s, background-color 0.3s;
-}
-
-#nuestros-valores .col-md-4:hover {
-  background-color: #e0e0e0;  /* Color de fondo al pasar el cursor */
-  transform: scale(1.05);  /* Aumenta ligeramente el tamaño al hacer hover */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);  /* Sombra al pasar el cursor */
-}
-
-
-/*Exclusivo Opticas */
-
-
-@media (max-width: 768px) {
-  #nuestros-valores .col-md-4 {
-      margin-bottom: 2rem;
-  }
-
-  #nuestros-valores {
-      padding: 2rem 1rem;
-  }
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  main {
-    padding: 1rem;
-  }
-
-  #product-detail h2 {
-    font-size: 1.75rem;
-  }
-
-  #product-detail h4 {
-    font-size: 1.25rem;
-  }
-
-  #product-detail p {
-    font-size: 0.9rem;
-  }
-
-  /* Miniaturas */
-  .thumbnail-img {
-  
-  }
-  
-}
-
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  .section-header h2 {
-    font-size: 2rem;
-  }
-
-  .section-header p {
-    font-size: 1rem;
-  }
-
-  .conForm {
-    padding: 20px;
-  }
-
-  .conForm .btn {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-}
-/* Estilos por defecto (Mobile-first) */
-@media (max-width: 768px) {
-
-  #small{
-    display:block;
-  }
-  .carousel .carousel-item img{
-    display: none;
-  }
-}
-/* Tablet y dispositivos medianos */
-@media (min-width: 769px) and (max-width: 1200px) {
-  /* Navbar Styles */
-  .navbar {
-    padding: 1rem 2.5rem; /* Aumenta el padding lateral */
-    font-size: 1.1em; /* Incrementa ligeramente el tamaño de fuente */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
-    z-index: 5;
-    position:fixed;
-  }
-
-  .navbar-brand-container {
-    width: 25%; /* Ajusta el ancho del contenedor de la marca */
-    margin-left: 0; /* Elimina el margen adicional */
-  }
-
-  .navbar-brand-img {
-    height: 60px; /* Aumenta el tamaño del logo */
-    width: auto;
-  }
-
-  .navbar-nav-container {
-    justify-content: flex-end;
-    margin-right: 2rem; /* Espacio a la derecha */
-  }
-
-  .navbar-nav-pages {
-    gap: 2rem; /* Espacio entre enlaces de navegación */
-  }
-
-  .navbar-nav-media {
-    gap: 1.5rem; /* Espacio entre íconos de redes sociales */
-  }
-
-  .nav-toggle {
-    display: none; /* Oculta el botón de toggle, ya que hay suficiente espacio */
-  }
-
-  /* Alineación de los elementos del navbar */
-  .navbar-nav-container.active {
-    /* Mantiene la funcionalidad del toggle si es necesario */
-  }
-
-  /* Ajustes de fuentes para enlaces */
-  .nav-link {
-    font-size: 1rem;
-  }
-
-  /* Contenedores de Productos */
-  .three-container {
-    flex-direction: row;
-    height: 70vh;
-    margin: 2rem 0;
-  }
-
-  .two-container {
-    height: 100%;
-  }
-
-  .one-img-container {
-    height: 100%;
-  }
-
-  .one-img-container img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .one-img-container img:hover {
-    transform: scale(1.05); /* Efecto de hover sutil */
-  }
-
-  /* Ajustes en la Sección "Somos" */
-  .somos-container {
-    height: 50vh;
-    padding: 1rem 2rem;
-  }
-  .somos-container-text img {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
-  }
-
-  .somos-frase {
-    font-size: 3rem; /* Tamaño de fuente ajustado */
-    text-align: left;
-  }
-
-  /* Ajustes en la Sección de Filtrado de Gafas */
-  .container-title-filter {
-    
-    gap: 20px;
-  }
-
-  .title-filter {
-    font-size: 2.5rem;
-  }
-
-  /* Lista de Gafas */
-  .container-list-group {
-    gap: 2rem;
-  }
-
-  .glasses-container-img img {
-    max-height: 250px; /* Limita la altura para mantener la consistencia */
-  }
-
-  /* Formularios y Secciones Adicionales */
-  .conForm {
-    padding: 35px;
-  }
-
-  .conForm .btn {
-    padding: 12px;
-    font-size: 1rem;
-  }
-
-  /* Imágenes */
 
   .carousel .carousel-item img {
-    /* Ajusta la altura del carousel */
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-
-  }
-  .custom-carousel .carousel-item {
-    height: 90vh; /* Ajusta la altura del carousel */
-  }
-  .glasses-container-img img {
-    max-height: 250px; /* Limita la altura de las imágenes de gafas */
+    object-position: center;
   }
 
-  /* Tipografía */
-  body {
-    font-size: 16px; /* Tamaño base */
-  }
-
-  h1 {
-    font-size: 3.5rem;
-  }
-
-  h2 {
-    font-size: 2.8rem;
-  }
-
-  h3 {
-    font-size: 2.3rem;
-  }
-
-  h4 {
-    font-size: 1.8rem;
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  /* Botones */
-  .btn {
-    font-size: 1rem;
-    padding: 10px 30px;
-  }
-
-  .btn-large {
-    padding: 15px 50px;
+  /* Reducir tamaño de títulos en bloques */
+  .one-img-container .title {
+    font-size: clamp(1.2rem, 7vw, 2rem);
   }
 }
 
-/* Desktop grande */
-@media (min-width: 1201px) and (max-width: 1500px) {
-  .navbar {
-    padding: 1rem 3rem; /* Aumenta el padding para mayor espacio */
-    font-size: 1.2em; /* Incrementa ligeramente el tamaño de fuente */
-  }
+/* Pequeñas utilidades para evitar elementos amontonados */
+.u-vertical-separator { margin-top: 1rem; margin-bottom: 1rem; }
+.u-no-margin { margin: 0 !important; }
+.u-no-padding { padding: 0 !important; }
 
-  .navbar-brand-container {
-    width: 20%; /* Ajusta el ancho del contenedor de la marca */
-  }
+/* --- MODIFICACIONES PARA SECCIONES DE ATAJOS (RECETA/SOL, ÓPTICAS/EQUIPO MITO) --- */
 
-  .navbar-nav-container {
+/* Contenedor principal de atajos: habilita Flexbox, define altura y espaciado */
+.three-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
+  justify-content: space-between; /* Espacia los dos contenedores */
+  gap: 2%; /* Espacio entre los dos contenedores (1% de cada lado) */
+  margin: 2rem 0; /* Espaciado entre el carrusel y entre las secciones */
+  height: 400px; /* Altura fija para que no sea "enorme" */
+}
+
+/* Cada elemento de atajo: define el ancho para que quepa la mitad */
+.two-container {
+  width: 49%; /* Un poco menos del 50% para dejar espacio para el gap */
+  height: 100%;
+}
+
+/* Contenedor de la imagen: asegura que ocupe todo el espacio de su padre */
+.one-img-container {
+  height: 100%;
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* La imagen debe cubrir el contenedor */
+.one-img-container img {
+  height: 100%; 
+  width: 100%; 
+  object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+  transition: transform .3s ease; 
+}
+
+/* Títulos dentro de los atajos */
+.one-img-container .title {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; /* Por defecto blanco */
+    text-transform: uppercase;
+    font-family: var(--fuente-secundaria);
+    font-weight: 700;
+    text-align: center;
+    z-index: 2;
+    font-size: clamp(2rem, 6vw, 6rem); /* Responsive font size */
+    letter-spacing: .6rem;
+     text-shadow: 0 4px 9px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Clase específica para el título "ÓPTICAS" si debe ser negro */
+.one-img-container .title.black {
+    color: #000; /* Color negro para este título */
+    text-shadow: none; /* Sin sombra para que contraste mejor */
+}
+
+/* --- FIN: MODIFICACIONES PARA SECCIONES DE ATAJOS --- */
+
+
+/* Navbar (Se mantienen las correcciones anteriores) */
+.navbar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  /*padding: 0.7rem 2rem;*/
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  font-weight: bold;
+  /* height: 80px;  */
+}
+.navbar-brand-container { 
+    display: inline-block; 
+    height: 70px; 
+    width: auto; 
+    /* margin-right: 2rem; */
+}
+.navbar-brand-img { object-fit: cover; height: 100%; }
+.navbar-nav-container { 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    width: auto; 
+    flex-grow: 1;
+    margin-right: 1rem;
     justify-content: flex-end;
-    margin-right: 3rem; /* Más espacio a la derecha */
+}
+.navbar-nav-pages { list-style: none; display: flex; gap: 1.5rem; margin: 0 2rem 0 0; }
+.nav-item { list-style: none; }
+.nav-link { color: #000; text-decoration: none; transition: color .3s ease; }
+.nav-link:hover { color: var(--color-hover); }
+.navbar-nav-media { list-style: none; display: flex; gap: 1rem; margin-bottom: 0%; }
+.nav-toggle { background: none; border: none; color: #000; font-size: 2rem; cursor: pointer; z-index: 1000; visibility: hidden; }
+.navbar-nav-container.active { display:flex; flex-direction: column; align-items:center; justify-content:center; position:fixed; top:0; left:50%; transform:translateX(-50%); background:#fff; padding:1rem; border-radius:5px; z-index:999;margin-bottom: 0px !important; }
+
+/* Carousel (Se mantienen los estilos) */
+:root {
+  --carousel-vh-desktop: calc(var(--vh, 1vh) * 90);
+  --carousel-vh-mobile: calc(var(--vh, 1vh) * 60);
+}
+#main-carousel { width:100%; margin:0 auto; /*height: var(--carousel-vh-desktop);*/ }
+.carousel-inner { height:100%; width:100%; }
+.custom-carousel .carousel-item { height: var(--carousel-vh-desktop); width:100%; display:flex; align-items:center; justify-content:center; }
+.carousel .carousel-item, .custom-carousel .carousel-item {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.carousel-caption-custom {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 6px 12px rgba(0,0,0,0.6);
+  padding: 0 1rem;
+}
+.carousel-caption-custom h2 {
+  font-family: var(--fuente-secundaria);
+  font-size: clamp(1.8rem, 6vw, 5rem);
+  letter-spacing: .5rem;
+  margin: 0;
+  pointer-events: none;
+}
+.carousel-item { position: relative; overflow: hidden; }
+.carousel .carousel-item img, .custom-carousel .carousel-item img { max-height: 100%; height: auto; }
+#carouselImages { height: 60vh; }
+#carouselImages { height: calc(var(--vh,1vh) * 60); }
+#carouselImages img { width: 100%; height: calc(var(--vh,1vh) * 60); object-fit: contain; padding: .3rem; display:block; }
+.mitos-carousel .carousel-inner img { height: auto; object-fit: contain; }
+.carousel-item.object-fit-fallback { background-color: #000; }
+.carousel-item.object-fit-fallback img { display: none !important; }
+html.no-objectfit .carousel-item {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html.no-objectfit .carousel-item .sr-only-fallback {
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  background: rgba(0,0,0,.4);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon { background-color: rgba(0,0,0,.5); border-radius:50%; }
+.carousel-control-prev, .carousel-control-next { width:5%; }
+
+/* Productos / listados (Se mantienen los estilos) */
+.container-list { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; padding:20px; }
+.container-list-item { flex:1 1 calc(33.333% - 1.5rem); max-width:300px; box-sizing:border-box; list-style:none; }
+.glasses-container { border:1.5px solid #6c757d; padding:20px; text-align:center; background:#fff; border-radius:8px; transition:transform .3s ease; }
+.container-list-item a { text-decoration:none; color:inherit; }
+.glasses-container:hover { transform:scale(1.05); }
+.glasses-img { width:80%; height:auto; border-radius:5px; object-fit:cover; margin:0 auto; }
+.glasses-title { font-size:1.2rem; font-weight:bold; margin:10px 0; color:#333; }
+.glasses-material { font-size:.9rem; color:#777; margin-bottom:10px; }
+.list-img-colors { display:flex; list-style:none; padding:0; justify-content:center; margin-top:10px; }
+.list-img-colors img { width:64px; height:64px; object-fit:cover; border-radius:50%; transition:transform .3s ease; }
+.list-img-colors img:hover { transform:scale(1.2); }
+
+/* Detalle producto (Se mantienen los estilos) */
+#product-detail { padding:1rem; }
+.mt-3 { margin-top:1rem; display:flex; justify-content:space-evenly; }
+.thumbnail-img { max-width:30%; width:max-content; height:auto; border:2px solid transparent; transition:border-color .3s ease; }
+.thumbnail-img.active { border-color:#333; }
+
+/* Sección SOMOS ("Tu mirada vale") */
+.somos-container { 
+    display:flex; 
+    background:#fff; 
+    width:100%; 
+    padding:1rem 2.5rem; 
+    justify-content:center; 
+    flex-direction:column; 
+    align-items:center; 
+}
+.somos-container img { width:100%; }
+.somos-frase { color:#000; font-size: 3rem; font-family:var(--fuente-principal); } /* Tamaño de fuente ajustado */
+
+/* Footer (Se mantienen los estilos) */
+footer { position:relative; left:0; right:0; bottom:0; }
+.footer-container-social .footer-container-img img { max-width:200px; height:auto; }
+.footer-container-media, .footer-container-img { display:flex; justify-content:center; }
+.footer-container-social .navbar-nav-media { display:flex; justify-content:flex-start; gap:1rem; }
+.footer-container-social .navbar-nav-media .nav-link { font-size:1.5rem; color:#fff; width:25%; }
+.footer-container-links { display:flex; gap:1rem;justify-content: center;align-items: center; }
+.navbar-nav-links { display:flex; flex-direction:column; gap:.5rem; }
+.footer .nav-link { color:#fff; text-decoration:none; }
+.footer .nav-link:hover { color:#ccc; }
+
+/* Sección Encontranos (Se mantienen los estilos) */
+.container-opticas { display:flex; flex-direction:column; width:60vw; margin:0 auto 2rem; }
+.scrollable-list { max-height:70vh; overflow-y:auto; border:1px solid #ddd; padding:1rem; display:flex; flex-direction:column; width:100%; margin-left:5rem; }
+.scrollable-list-item { padding:10px; border-bottom:1px solid #ddd; cursor:pointer; transition:background-color .3s ease; }
+.scrollable-list-item:hover { background:#f1f1f1; }
+.scrollable-list-item a { text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.container-opticas-title { display:flex; flex-direction:row; justify-content:space-between; margin:1rem; }
+.dropdown { position:relative; display:inline-block; }
+.dropdown-toggle, .item-btn { background:transparent; color:#050304; font-size:1rem; font-weight:600; border:1px solid #000; border-radius:2px; text-transform:uppercase; padding:10px 20px; cursor:pointer; }
+.dropdown-toggle:hover, .item-btn:hover { background:#0b0909; color:#fff; }
+#localidades { overflow-y:auto; }
+.dropdown-menu { display:none; position:absolute; background:#fff; min-width:200px; box-shadow:0 8px 16px rgba(0,0,0,.2); z-index:1; max-height:150px; border:1px solid #ddd; border-radius:4px; }
+.dropdown-menu.show { display:block; }
+.soporte-section-buttons { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+
+/* Disclaimer (Se mantienen los estilos) */
+.disclaimer { display:flex; flex-direction:column; justify-content:center; align-items:center; margin:.6rem; }
+.disclaimer .disclaimer-container-link { text-decoration:none; display:flex; gap:.2rem; }
+
+/* Wapp icon - icono flotante (Se mantienen los estilos) */
+.wapp-icon .nav-link { display:none; }
+@media (max-width:768px) { .wapp-icon .nav-link { display:block; position:fixed; bottom:20px; right:20px; font-size:3.3rem; z-index:1000; color:black; text-decoration:none; margin:2rem; } .wapp-icon .nav-link:hover { color:gray; transform:scale(1.1); } }
+
+/* Media queries responsivos */
+@media (max-width:768px) {
+  main { padding:1rem; }
+  body { padding-top: 55px; }
+  .navbar { 
+    height: 55px; 
+    padding:0 1rem; 
+    font-size:1.5em; 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+  }
+  .navbar-brand-container { 
+    height: 40px; 
+    width:auto; 
+    margin-left:0; 
+  }
+  .navbar-brand-img { height:40px; width:auto; }
+  .nav-toggle { display:flex; visibility:visible; font-size:1.6rem; background:none; border:none; color:#000; align-items:center; justify-content:center; padding:0.3rem; }
+  .nav-toggle i { font-size:1.6rem; }
+  .navbar-nav-container { display:none; width:100%; height:100%; background:#fff; }
+  .navbar-nav-container.active { display:flex; flex-direction:column; }
+  .navbar-nav-pages { flex-direction:column; align-items:center; gap:1rem; margin:0; }
+  .navbar-nav-media { margin-top:1rem; }
+
+  /* En móvil, los contenedores se apilan uno debajo del otro */
+  .three-container { flex-direction:column; height:auto; gap:1rem; margin: 1rem 0; } /* Ajuste de gap y margin */
+  .two-container { width:100%; height:auto; margin-bottom:0; } /* Eliminar margin-bottom redundante */
+  .one-img-container .title { font-size: clamp(1.4rem, 10vw, 3rem); letter-spacing: .3rem; } /* Ajustar font-size en mobile */
+
+  .somos-container { height:auto; padding:1rem; }
+  .somos-frase { font-size:2rem; }
+  .footer-container-social { text-align:center; margin-bottom:2rem; }
+  .footer-container-social .footer-container-img img { max-width:80px; }
+  .container-opticas { width:90vw; margin-bottom:1rem; }
+  .scrollable-list { max-height:50vh; padding:.5rem; margin-top:1rem; margin-left:0; }
+  .container-list-item { flex: 1 1 100%; max-width: none; }
+  .container-list { padding: 1rem; }
+  #main-carousel { height: var(--carousel-vh-mobile); }
+  .custom-carousel .carousel-item { height: var(--carousel-vh-mobile); }
+  .carousel-caption-custom h2 { font-size: clamp(1.4rem, 10vw, 2.4rem); letter-spacing: .2rem; }
+
+  /* ---- NUEVAS REGLAS (sobrescriben reglas anteriores y evitan deformaciones) ---- */
+  /* asegurar que el .carousel-item tenga overflow oculto y altura fija por variable */
+  .carousel .carousel-item {
+    overflow: hidden;
+    height: var(--carousel-vh-mobile);
+    display: block;
   }
 
-  .navbar-nav-pages {
-    gap: 3rem; /* Mayor separación entre enlaces */
-  }
-
-  .navbar-nav-media {
-    gap: 1.5rem; /* Mayor separación entre íconos de redes sociales */
-  }
-
-  .navbar-nav-media .nav-link i {
-    font-size: 1.5em; /* Aumenta el tamaño de los íconos */
-  }
-
-  .nav-toggle {
-    font-size: 2rem; /* Aumenta el tamaño del botón de toggle si es necesario */
-  }
-
-  /* Contenedores de productos */
-  .three-container {
-    flex-direction: row;
-    height: 80vh;
-    margin: 2rem 0;
-  }
-
-  .two-container {
+  /* forzar que la <img> ocupe el contenedor sin estirarse: crop con object-fit: cover */
+  .carousel .carousel-item img {
+    width: 100%;
     height: 100%;
+    object-fit: cover;        /* recorta para llenar sin distorsión */
+    object-position: center;  /* centra el crop en la imagen */
+    display: block;
   }
 
-  .one-img-container {
-    height: 100%;
+  /* Si se desea un fallback visual (overlay oscuro) para mejorar lectura de captions */
+  .carousel .carousel-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.15));
+    pointer-events: none;
+  }
+  /* ---- fin nuevas reglas ---- */
+}
+
+@media (min-width:769px) and (max-width:1200px) {
+  .navbar { padding:1rem 2.5rem; font-size:1.1em; box-shadow:0 2px 4px rgba(0,0,0,.1); position:fixed; }
+  .navbar-brand-container { width:25%; }
+  .navbar-brand-img { height:60px; width:auto; }
+  .navbar-nav-pages { gap:2rem; }
+  /* Se eliminan las alturas conflictivas de .three-container y .one-img-container para usar las globales */
+
+  .one-img-container img { height:100%; width:100%; object-fit:cover; transition:transform .3s ease; }
+
+  /* Hero/atajo: mostrar imagen en cover y centrar título encima */
+  .one-img-container .title {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-transform: uppercase;
+    font-family: var(--fuente-secundaria);
+    font-weight: 700;
+    text-align: center;
+    z-index: 2;
+    /* responsive title size */
+    font-size: clamp(2rem, 6vw, 6rem);
+    letter-spacing: .6rem;
+     text-shadow: 0 4px 9px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+  white-space: nowrap;
   }
 
-  .somos-container {
-
-  }
-
-  .somos-frase {
-    font-size: 4rem; /* Ajusta el tamaño de la frase */
-  }
-
-  /* Sección de filtrado de gafas */
-  .container-title-filter {
-    gap: 30px; /* Mayor espacio entre título y filtro */
-  }
-
-  .title-filter {
-    font-size: 3rem;
-  }
-
-  /* Lista de gafas */
-  .container-list-group {
-    gap: 2rem;
-  }
-  /* Formularios y secciones adicionales */
-  .conForm {
-    padding: 40px;
-  }
-
-  .conForm .btn {
-    padding: 15px;
-    font-size: 1.1rem;
+  /* Ajustes para dispositivos pequeños: reducir altura y tamaño del título */
+  @media (max-width:768px) {
+    .one-img-container { height: calc(var(--vh,1vh) * 35); }
+    .one-img-container .title { font-size: clamp(1.4rem, 10vw, 3rem); letter-spacing: .3rem; }
   }
 }
 
-/* Pantallas extra grandes */
-@media (min-width: 1501px) {
-  /* Estilos para pantallas mayores a 1500px */
+@media (min-width:1201px) and (max-width:1500px) {
+  .navbar { padding:1rem 3rem; font-size:1.2em; }
+  .navbar-brand-container { width:20%; }
+  .navbar-nav-pages { gap:3rem; }
+  
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  .navbar {
+@media (min-width:1501px) { /* estilos para pantallas extra grandes si fuera necesario */ }
+
+/* Scrollbar (Se mantienen los estilos) */
+::-webkit-scrollbar { width:0.7em; }
+::-webkit-scrollbar-track { box-shadow: inset 0 0 6px rgba(0,0,0,.3); }
+::-webkit-scrollbar-thumb { background-color: darkgrey; border-radius:20px; }
+
+@media (max-width:768px) {
+
+  /* asegurar que el carrusel tenga clipping y posición correcta */
+  .carousel-inner {
+    position: relative;
     width: 100%;
-    height: 7vh;
-    margin: 0;
-    padding: 0;
-    box-sizing: revert;
-    font-size: 1.5em;
+    overflow: hidden;
   }
 
-  .navbar-brand-container {
-    height: 5vh;
-    width: 50%;
-    margin-left: 1.6em;
+  /* devolver el comportamiento esperado de Bootstrapping: items escondidos por defecto */
+  .carousel .carousel-item {
+    position: relative;
+    display: none; /* Bootstrap añade .active para mostrar */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
-  .nav-toggle {
-    display: flex;
-    visibility: visible;
-    font-size: 1.5rem;
-    width: 50%;
-    padding-right: 3em;
-    justify-content: flex-end;
+  /* mostrar los estados que Bootstrap usa durante la transición */
+  .carousel .carousel-item.active,
+  .carousel .carousel-item.carousel-item-next,
+  .carousel .carousel-item.carousel-item-prev {
+    display: block;
   }
 
-  .navbar-nav-container {
-    display: none;
+  /* imágenes llenan el contenedor sin deformarse (se recortan) */
+  .carousel .carousel-item img {
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
-  .navbar-nav-container.active {
-    display: flex;
-    flex-direction: column;
+  /* suavizar animaciones y evitar flicker */
+  .carousel .carousel-item,
+  .carousel .carousel-item img {
+    will-change: transform, opacity;
+    transition: transform .6s ease, opacity .6s ease;
   }
 
-  .navbar-nav-pages {
+  /* caption encima de la imagen */
+  .carousel .carousel-caption-custom {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+  }
+}
+.container-title-filter {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    margin: 0;
-  }
 
-  .navbar-nav-media {
-    margin-top: 1rem;
   }
-
-  .navbar-brand-link {
-    height: 100%;
-    display: flex;
-  }
-
-  .three-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .two-container {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
-  }
-
-  .somos-container {
-    height: auto;
-    padding: 1rem;
-  }
-
-  .somos-frase {
-    font-size: 2rem;
-  }
-  .footer-container-social {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .footer-container-social .footer-container-img img {
-    max-width: 80px;
-  }
-
-  .footer-container-social .navbar-nav-media {
-    justify-content: center;
-  }
-
-  .footer-container-links {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: unset;
-  }
-
-  .footer-container-links .navbar-nav-links {
-    justify-content: center;
-  }
-
-  /* glasses section */
-  .container-title-filter {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .title-filter {
-    font-size: 2rem;
-  }
-
-  
-  .container-list-group {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-  }
-  .container-list-item {
-    width: 100%;
-  }
-  .glasses-container {
-    width: 100%;
-  }
-
-
-  .glasses-container img:hover {
-    transform: scale(1.1);
-  }
-}
-
-/* icono wapp para celulares  */
-.wapp-icon{
-.nav-link {
-  display: none; /* Oculto por defecto */
-}
-}
-/* Mostrar solo en dispositivos móviles o tablets */
-@media screen and (max-width: 768px) {
- .wapp-icon{
-  .nav-link {
-    display: block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 3.3rem;
-    z-index: 1000;
-    color: black;
-    text-decoration: none;
-    margin: 2rem;
-  }
-
-  .nav-link:hover {
-      color: gray; /* Cambia a gris al pasar el mouse */
-      transform: scale(1.1);
-  }
-}
-}
-/* scroll bar */
-::-webkit-scrollbar {
-  width: 0.7em;
-}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  border-radius: 20px;
-}

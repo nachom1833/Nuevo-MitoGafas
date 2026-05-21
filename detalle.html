@@ -24,7 +24,7 @@
         <nav class="navbar" id="header" aria-label="Navegación principal">
             <div class="navbar-brand-container">
                 <a class="navbar-brand-link" href="./index.html">
-                    <img class="navbar-brand-img" src="img\LOGO.png" alt="Logo de MitoGafas" />
+                    <img class="navbar-brand-img" src="img/LOGO.png" alt="Logo de MitoGafas" loading="lazy" />
                 </a>
             </div>
             <div class="navbar-nav-container" id="navbarNav">
@@ -76,7 +76,7 @@
                 <!-- Logo and social media links -->
                 <div class="col-md-4 footer-container-social">
                     <div class="footer-container-img mb-3">
-                        <img src="./img/LOGO BLANCO.png" alt="logo-footer" class="img-fluid" />
+                        <img src="./img/LOGO BLANCO.png" alt="logo-footer" class="img-fluid" loading="lazy" />
                     </div>
                     <div class="footer-container-media">
                         <ul class="navbar-nav-media list-inline">
@@ -201,7 +201,7 @@
                     .map(
                         (item, index) => `
                 <div class="carousel-item ${index === 0 ? "active" : ""}">
-                    <img src="${item.src}" class="d-block w-100" alt="${item.alt}">
+                    <img src="${item.src}" class="d-block w-100" alt="${item.alt}" loading="lazy">
                 </div>
             `
                     )
@@ -225,7 +225,7 @@
                 const widthPercentage = (100 / secondaryImages.length).toFixed(2);
                 return `
                     <div style="width:${widthPercentage}%; cursor: pointer; object-fit:contain;">
-                        <img src="${img.url}" alt="Miniatura ${index + 1}" class="img-thumbnail thumbnail-img">
+                        <img src="${img.url}" alt="Miniatura ${index + 1}" class="img-thumbnail thumbnail-img" loading="lazy">
                     </div>
                 `;
             })
