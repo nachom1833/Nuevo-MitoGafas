@@ -1,6 +1,14 @@
 RewriteEngine on
+
+# 1. Enforce HTTPS Redirection
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:CDN-LOOP} !cloudflare
 RewriteCond %{REQUEST_URI} !^/.well-known/acme-challenge/
 RewriteCond %{HTTP_HOST} ^(www\.)?mitogafas\.com\.ar
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,QSA]
+
+# 2. Redirect all dynamic requests to the Front Controller index.php
+# Do not rewrite if the file, directory, or link physically exists on the disk
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
